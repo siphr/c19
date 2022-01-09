@@ -1,2 +1,6 @@
 # c19
-covid19 stats package for various countries
+Covid19 stats package for various countries.
+
+# Available Formats
+    + AUR Package
+    + PIP Package
