@@ -15,15 +15,28 @@ class gb:
     def vaccinations(self):
         ''' Vaccinations: total and rate as reported in the last 24 Hrs. '''
         vaccs = {
-                'partial': {'total':0, 'rate':0},
+                'partial': {'total':0, 'rate':0, },
                 'full': {'total':0, 'rate':0}
                 }
 
-        vacc_texts = self.soup.find_all('div', attrs={'class':'vacc_text'})
-        vaccs['partial']['total'] = int(vacc_texts[0].contents[3].text.replace(',',''))
-        vaccs['partial']['rate'] = int(vacc_texts[0].contents[5].span.text.replace(',',''))
-        vaccs['full']['total'] = int(vacc_texts[1].contents[3].text.replace(',',''))
-        vaccs['full']['rate'] = int(vacc_texts[1].contents[5].span.text.replace(',',''))
+        first = self.soup.find('ul', attrs={'class':'first'}).find_all('li')
+        second = self.soup.find('ul', attrs={'class':'second'}).find_all('li')
+        booster = self.soup.find('ul', attrs={'class':'booster'}).find_all('li')
+
+        f = {}
+        f.update({'total': int(first[1].span.span.meta.attrs['content'])})
+        f.update({'rate': int(first[0].span.span.meta.attrs['content'])})
+
+        s = {}
+        s.update({'total': int(second[1].span.span.meta.attrs['content'])})
+        s.update({'rate': int(second[0].span.span.meta.attrs['content'])})
+
+        b = {}
+        b.update({'total': int(booster[1].span.span.meta.attrs['content'])})
+        b.update({'rate': int(booster[0].span.span.meta.attrs['content'])})
+
+        vaccs.update( {'partial': { 'total': f['total'] + s['total'], 'rate': f['rate'] + s['rate'] } })
+        vaccs.update( {'full': { 'total': b['total'], 'rate': b['rate'] } })
 
         return vaccs
 
@@ -39,6 +52,11 @@ class gb:
 
     def cases(self):
         ''' Cases (Normal and Critical): total and rate as reported in the last 24 Hrs. '''
+        _url='https://coronavirus.data.gov.uk/details/cases?areaType=overview&areaName=United%20Kingdom'
+        self._rs = r.get(_url)
+        self._soup = bs(self._rs.content, 'html.parser')
+        m = self._soup.find('main')
+        return m.section.div.div.div.div.a.remove('span').text
         cases = { 'total':0, 'rate': 0, 'critical': { 'total': 0, 'rate': 0} }
         
         c = self.soup.find('li', attrs={'class':'tests'})
