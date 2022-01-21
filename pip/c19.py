@@ -23,10 +23,6 @@ if __name__ == '__main__':
             print('\033[1mShow deaths\033[0m\t\t\t$c19 -x|--deaths')
             print('\033[1mShow cases\033[0m\t\t\t$c19 -c|--cases')
             print('\033[1mShow recoveries\033[0m\t\t\t$c19 -r|--recoveries')
-        elif o in ('-s', '--support'):
-            print('SUPPORTED COUNTRIES')
-            print('===================')
-            get_supported_countries()
         else:
             if pk is None: pk = countries.pk()
             if o in ('-v', '--vaccinations'):

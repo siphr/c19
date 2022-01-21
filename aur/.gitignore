@@ -1,5 +1,5 @@
 *src
 *pkg
 *zst
-*test
 *.git
+*build

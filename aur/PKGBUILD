@@ -1,7 +1,7 @@
 # Maintainer: siphr <archlinux@techtum.dev>
 pkgname=c19
 pkgver=0.0
-pkgrel=3
+pkgrel=4
 pkgdesc="COVID-19 Stats for the country of Pakistan."
 depends=(python)
 arch=(x86_64)
