@@ -13,7 +13,6 @@ build() {
     echo "PREPARING..."
     pip install pycountry 
     pip install c19
-    
     echo "echo BUILD DATE: `date`" > c19
     echo "python -m c19 \$@" >> c19
 
