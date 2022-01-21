@@ -1,32 +1,32 @@
 import countries
 import getopt
 import sys
-
+import os
+import pycountry
 
 if __name__ == '__main__':
     pk = None
     try:
-        opts, _ = getopt.getopt(sys.argv[1:], 'hsvdxrct', ['help', 'support', 'vaccinations',
+        opts, _ = getopt.getopt(sys.argv[1:], 'hsvdxrct', ['help', 'vaccinations',
             'dosage', 'deaths', 'recoveries', 'cases', 'tests'])
     except Exception as e:
         print(e)
         sys.exit(1)
 
-    if opts == []: print('\033[1mHelp\033[0m\tc19.py -h')
+    if opts == []: print('\033[1mHelp\033[0m\t$c19 -h')
 
     for o, _ in opts:
         if o in ('-h', '--help'):
-            print('\033[1mShow this help\033[0m\t\t\tc19.py -h|--help')
-            print('\033[1mShow supported countries\033[0m\tc19.py -s|--support')
-            print('\033[1mShow vaccinations\033[0m\t\tc19.py -v|--vaccinations')
-            print('\033[1mShow dosage\033[0m\t\t\tc19.py -d|--dosage')
-            print('\033[1mShow deaths\033[0m\t\t\tc19.py -x|--deaths')
-            print('\033[1mShow cases\033[0m\t\t\tc19.py -c|--cases')
-            print('\033[1mShow recoveries\033[0m\t\t\tc19.py -r|--recoveries')
+            print('\033[1mShow this help\033[0m\t\t\t$c19 -h|--help')
+            print('\033[1mShow vaccinations\033[0m\t\t$c19 -v|--vaccinations')
+            print('\033[1mShow dosage\033[0m\t\t\t$c19 -d|--dosage')
+            print('\033[1mShow deaths\033[0m\t\t\t$c19 -x|--deaths')
+            print('\033[1mShow cases\033[0m\t\t\t$c19 -c|--cases')
+            print('\033[1mShow recoveries\033[0m\t\t\t$c19 -r|--recoveries')
         elif o in ('-s', '--support'):
             print('SUPPORTED COUNTRIES')
             print('===================')
-            countries.get_supported_countries()
+            get_supported_countries()
         else:
             if pk is None: pk = countries.pk()
             if o in ('-v', '--vaccinations'):
