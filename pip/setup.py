@@ -22,4 +22,5 @@ setup(
 
     packages=['c19'],
     platforms="any",
+    install_requires=[]
 )
