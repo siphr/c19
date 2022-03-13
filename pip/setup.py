@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="c19",
-    version="0.0.6",
+    version="0.0.7",
     keywords=["covid-19", "stats", "distribution", "Pakistan"],
 
     description="COVID-19 stats package for the country of Pakistan.",
@@ -21,6 +21,9 @@ setup(
     author_email="pypi@techtum.dev",
 
     packages=['c19'],
+    package_data = {
+        'c19':['countries/*']
+        },
     platforms="any",
     install_requires=[]
 )
