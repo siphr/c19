@@ -1,4 +1,4 @@
-import countries
+from . import countries
 import getopt
 import sys
 import os

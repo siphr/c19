@@ -6,7 +6,7 @@ COVID-19 stats for the country of Pakistan.
 # Usage
 
 ```
-import c19
+from c19 import c19
 
 pk = c19.countries.pk()
 
