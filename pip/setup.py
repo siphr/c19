@@ -5,8 +5,8 @@ from setuptools import setup, find_packages
 
 setup(
     name="c19",
-    version="0.0.5",
-    keywords=["covid-19", "stats", "distribution", "pakistan"],
+    version="0.0.6",
+    keywords=["covid-19", "stats", "distribution", "Pakistan"],
 
     description="COVID-19 stats package for the country of Pakistan.",
     long_description=open('README.md').read(),
